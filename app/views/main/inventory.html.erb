@@ -1,0 +1,47 @@
+<div class='mt-5 bg-white shadow rounded p-4'>
+  <h1 class='h2 bg font-weight-bold text-center mb-4'>My Inventory</h1>
+  <% if (@inventoryItem.empty?)%>
+    <div class='m-5 text-center text-secondary'>
+      <h2>No Item</h2>
+    </div>
+  <%else%>
+    <table class='table'>
+      <thead class='bg-secondary text-white'>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Seller</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @inventoryItem.each do |order| %>
+          <tr>
+            <th scope="row">
+              <%= order.id %>
+            </th>
+            <td>
+              <% if(Item.find(order.item_id).picture.attached?)%>
+                <%= image_tag Item.find(order.item_id).picture.variant(:thumb) %>
+              <% else %>
+                <p>No Picture</p>
+              <% end %>
+            </td>
+            <td>
+              <%= Item.find(order.item_id).name %>
+            </td>
+            <td>
+              <%= order.price %>
+            </td>
+            <td>
+              <%= User.find(Item.find(order.item_id).user_id).name %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%end%>
+  <%= link_to 'Return to my shop', main_user_item_path ,class:'btn btn-secondary'%>
+</div>

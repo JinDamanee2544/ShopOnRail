@@ -1,6 +1,8 @@
 <div class='mt-5 bg-white shadow rounded p-4'>
-  <h1 class='h2 bg font-weight-bold text-center mb-4'>My Shop</h1>
-  <% if (@allItem.empty?)%>
+  <h1 class='h2 bg font-weight-bold text-center mb-4'>
+    <%= @ownerName %>'s Shop
+  </h1>
+  <% if (@shopItems.empty?)%>
     <h1>No Item</h1>
   <%else%>
     <table class='table'>
@@ -15,12 +17,12 @@
         </tr>
       </thead>
       <tbody>
-        <% @allItem.each do |item| %>
+        <% @shopItems.each do |item| %>
           <tr class="">
             <th scope="row">
               <%= item.id %>
             </th>
-            <td>
+            <td class='w-auto'>
               <% if(item.picture.attached?)%>
                 <%= image_tag item.picture.variant(:thumb) %>
               <% else %>
@@ -36,15 +38,14 @@
             <td>
               <%= item.stock %>
             </td>
-            <td class='d-flex'>
-              <%= link_to 'Edit', edit_item_path(item.id), class: 'btn btn-secondary'  %>
-              <%= button_to 'Delete', item, method: :delete ,class:'btn btn-danger'%>
-            </td>
+            <% if(session[:logged_in]) %>
+              <td class='d-flex'>
+                <%= button_to 'Buy', shop_buy_path(item.id), method: :post , class:'btn btn-success'%>
+              </td>
+            <% end%>
           </tr>
         <% end %>
       </tbody>
     </table>
   <%end%>
-  <%= link_to 'Add new product' , new_item_path , class: 'btn btn-secondary text-decoration-none' %>
-  <%= link_to 'Check my inventory' , main_inventory_path , class: 'btn btn-secondary text-decoration-none' %>
 </div>

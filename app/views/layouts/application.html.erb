@@ -12,12 +12,25 @@
   </head>
   <body>
     <% flash.each do |type, msg| %>
-      <div class='d-flex position-fixed mt-4 rounded-right justify-content-center bg-danger text-white p-2'>
+      <div class='d-flex position-fixed start-0 mt-4 justify-content-center bg-danger text-white p-2'>
         <h4><%= msg %></h4>
       </div>
     <% end %>
-    <div class='container d-flex justify-content-center align-items-center min-vh-100'>
-      <%= yield %>
+    <div class='min-vh-100 d-flex bg-light bg-gradient'>
+      <div class='container'>
+        <%= yield %>
+      </div>
     </div>
+    <% if(!current_page?(main_login_path))%>
+      <% if(session[:user_id].nil?) %>
+        <div class='position-fixed top-0 end-0 m-4'>
+          <%= link_to 'Log in' , main_login_path ,class:'btn btn-success' %>
+        </div>
+      <%else%>
+        <div class='position-fixed top-0 end-0 m-4'>
+          <%= link_to 'Log out' , main_destroy_path ,class:'btn btn-danger' %>
+        </div>
+      <%end%>
+    <%end%>
   </body>
 </html>

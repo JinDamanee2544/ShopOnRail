@@ -3,20 +3,19 @@
     <strong>User:</strong>
     <%= item.user_id %>
   </p>
-
   <p>
     <strong>Name:</strong>
     <%= item.name %>
   </p>
-
   <p>
     <strong>Price:</strong>
     <%= item.price %>
   </p>
-
   <p>
     <strong>Stock:</strong>
     <%= item.stock %>
   </p>
-
+  <% if(item.picture.attached?) %>
+    <%= image_tag item.picture.variant(:thumb) %>
+  <%end%>
 </div>

@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-  before_action :must_be_log_in , only: %i[ user_item ]
+  before_action :must_be_log_in , only: %i[ user_item inventory ]
 
   def login
   end
@@ -21,5 +21,9 @@ class MainController < ApplicationController
 
   def user_item
     @allItem = Item.where(user_id: session[:user_id])
+  end
+
+  def inventory
+    @inventoryItem = Inventory.where(user_id: session[:user_id])
   end
 end
