@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        if(@item.picture.attached?)
+        if (!item_params[:picture].nil?)
           @item.picture.attach(item_params[:picture])
         end
         format.html { redirect_to item_url(@item), notice: "Item was successfully updated." }

@@ -36,9 +36,11 @@
             <td>
               <%= item.stock %>
             </td>
-            <td class='d-flex'>
-              <%= link_to 'Edit', edit_item_path(item.id), class: 'btn btn-secondary'  %>
-              <%= button_to 'Delete', item, method: :delete ,class:'btn btn-danger'%>
+            <td>
+              <div class='d-flex'>
+                <%= link_to 'Edit', edit_item_path(item.id), class: 'btn btn-secondary'  %>
+                <%= button_to 'Delete', item, method: :delete ,class:'btn btn-danger'%>
+              </div>
             </td>
           </tr>
         <% end %>

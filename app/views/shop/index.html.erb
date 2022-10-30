@@ -39,8 +39,10 @@
               <%= item.stock %>
             </td>
             <% if(session[:logged_in]) %>
-              <td class='d-flex'>
-                <%= button_to 'Buy', shop_buy_path(item.id), method: :post , class:'btn btn-success'%>
+              <td>
+                <div class='d-flex'>
+                  <%= button_to 'Buy', shop_buy_path(item.id), method: :post , class:'btn btn-success'%>
+                </div>
               </td>
             <% end%>
           </tr>
