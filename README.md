@@ -1,8 +1,10 @@
 # LazaDae
 
-E-Commerce Website based on Ruby nn Rails
+E-Commerce Website based on Ruby on Rails
 
 (Web Programming Final project)
+
+[![lazadae.png](https://i.postimg.cc/43r679Mc/lazadae.png)](https://postimg.cc/cKBgPrd1)
 
 ## Requirement
 
