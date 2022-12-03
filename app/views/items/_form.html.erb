@@ -33,11 +33,13 @@
     <%= form.label :picture, style: "display: block" %>
     <%= form.file_field :picture %>
   </div>
-  <% if(current_page?(edit_item_path(item.id)))%>
-    <% if(item.picture.attached?) %>
-      <%= image_tag item.picture.variant(:thumb) %>
-    <%end%>
-  <%end %>
+  <% if not item.id.nil? %>
+    <% if(current_page?(edit_item_path(item.id)))%>
+      <% if(item.picture.attached?) %>
+        <%= image_tag item.picture.variant(:thumb) %>
+      <%end%>
+    <%end %>
+  <% end %>
   <div>
     <%= form.submit %>
   </div>
